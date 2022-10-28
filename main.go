@@ -59,6 +59,7 @@ func main() {
 				OnStartedLeading: func(ctx context.Context) {
 					atomic.StoreInt32(&leader, 1)
 					log.Printf("Pod %s now a leader", podName)
+					DoLeaderStuff(ctx)
 				},
 				OnStoppedLeading: func() {
 					atomic.StoreInt32(&leader, 0)
@@ -74,5 +75,7 @@ func main() {
 			},
 		})
 	}()
+}
 
+func DoLeaderStuff(ctx context.Context) {
 }
